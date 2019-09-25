@@ -1,0 +1,865 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_A0B2A3_conferenceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserTypeId" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="categorylist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="confabstracts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="nvarchar" MaxLength="128" />
+          <Property Name="title" Type="nvarchar" MaxLength="128" />
+          <Property Name="summary" Type="ntext" />
+          <Property Name="objective1" Type="ntext" />
+          <Property Name="objective2" Type="ntext" />
+          <Property Name="objective3" Type="ntext" />
+          <Property Name="category" Type="nvarchar" MaxLength="128" />
+          <Property Name="submitdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="status" Type="nchar" MaxLength="20" />
+          <Property Name="submitted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lectures">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" />
+          <Property Name="starttime" Type="nvarchar" MaxLength="50" />
+          <Property Name="duration" Type="nvarchar" MaxLength="50" />
+          <Property Name="room" Type="nvarchar" MaxLength="50" />
+          <Property Name="ecu" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="presenter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="abstractid" Type="int" />
+          <Property Name="fullname" Type="nchar" MaxLength="100" />
+          <Property Name="organization" Type="nchar" MaxLength="100" />
+          <Property Name="bio" Type="ntext" />
+        </EntityType>
+        <EntityType Name="studentclasses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="classid" Type="int" Nullable="false" />
+          <Property Name="scandate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysFilePath">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FileType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LinkId" Type="int" />
+          <Property Name="UploadDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Item" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumberOfItem" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type1" Type="nchar" MaxLength="10" />
+          <Property Name="Value1" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type2" Type="nchar" MaxLength="10" />
+          <Property Name="Value2" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type3" Type="nchar" MaxLength="10" />
+          <Property Name="Value3" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type4" Type="nchar" MaxLength="10" />
+          <Property Name="Value4" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description5" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type5" Type="nchar" MaxLength="10" />
+          <Property Name="Value5" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description6" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type6" Type="nchar" MaxLength="10" />
+          <Property Name="Value6" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description7" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type7" Type="nchar" MaxLength="10" />
+          <Property Name="Value7" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description8" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type8" Type="nchar" MaxLength="10" />
+          <Property Name="Value8" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description9" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type9" Type="nchar" MaxLength="10" />
+          <Property Name="Value9" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description10" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type10" Type="nchar" MaxLength="10" />
+          <Property Name="Value10" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="SysUserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_AspNetUsers_SysUserType">
+          <End Role="SysUserType" Type="Self.SysUserType" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_confabstracts_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="confabstracts" Type="Self.confabstracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="confabstracts">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_presenter_confabstracts">
+          <End Role="confabstracts" Type="Self.confabstracts" Multiplicity="0..1" />
+          <End Role="presenter" Type="Self.presenter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="confabstracts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="presenter">
+              <PropertyRef Name="abstractid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentclasses_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="studentclasses" Type="Self.studentclasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="studentclasses">
+              <PropertyRef Name="studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentclasses_classes">
+          <End Role="lectures" Type="Self.lectures" Multiplicity="1" />
+          <End Role="studentclasses" Type="Self.studentclasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lectures">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="studentclasses">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_A0B2A3_conferenceModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categorylist" EntityType="Self.categorylist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="confabstracts" EntityType="Self.confabstracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lectures" EntityType="Self.lectures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="presenter" EntityType="Self.presenter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="studentclasses" EntityType="Self.studentclasses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysFilePath" EntityType="Self.SysFilePath" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysSetting" EntityType="Self.SysSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysUserType" EntityType="Self.SysUserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUsers_SysUserType" Association="Self.FK_AspNetUsers_SysUserType">
+            <End Role="SysUserType" EntitySet="SysUserType" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_confabstracts_AspNetUsers" Association="Self.FK_confabstracts_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="confabstracts" EntitySet="confabstracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_presenter_confabstracts" Association="Self.FK_presenter_confabstracts">
+            <End Role="confabstracts" EntitySet="confabstracts" />
+            <End Role="presenter" EntitySet="presenter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentclasses_AspNetUsers" Association="Self.FK_studentclasses_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="studentclasses" EntitySet="studentclasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentclasses_classes" Association="Self.FK_studentclasses_classes">
+            <End Role="lectures" EntitySet="lectures" />
+            <End Role="studentclasses" EntitySet="studentclasses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_A0B2A3_conferenceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="DB_A0B2A3_conferenceModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DB_A0B2A3_conferenceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="DB_A0B2A3_conferenceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityContainer Name="DB_A0B2A3_conferenceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="lectures" EntityType="DB_A0B2A3_conferenceModel.lecture" />
+          <EntitySet Name="studentclasses" EntityType="DB_A0B2A3_conferenceModel.studentclass" />
+          <AssociationSet Name="FK_studentclasses_classes" Association="DB_A0B2A3_conferenceModel.FK_studentclasses_classes">
+            <End Role="lecture" EntitySet="lectures" />
+            <End Role="studentclass" EntitySet="studentclasses" />
+          </AssociationSet>
+          <EntitySet Name="SysUserTypes" EntityType="DB_A0B2A3_conferenceModel.SysUserType" />
+          <EntitySet Name="categorylists" EntityType="DB_A0B2A3_conferenceModel.categorylist" />
+          <EntitySet Name="AspNetUsers" EntityType="DB_A0B2A3_conferenceModel.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="DB_A0B2A3_conferenceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="DB_A0B2A3_conferenceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_SysUserType" Association="DB_A0B2A3_conferenceModel.FK_AspNetUsers_SysUserType">
+            <End Role="SysUserType" EntitySet="SysUserTypes" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentclasses_AspNetUsers" Association="DB_A0B2A3_conferenceModel.FK_studentclasses_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="studentclass" EntitySet="studentclasses" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="DB_A0B2A3_conferenceModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="presenters" EntityType="DB_A0B2A3_conferenceModel.presenter" />
+          <EntitySet Name="confabstracts" EntityType="DB_A0B2A3_conferenceModel.confabstract" />
+          <AssociationSet Name="FK_confabstracts_AspNetUsers" Association="DB_A0B2A3_conferenceModel.FK_confabstracts_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="confabstract" EntitySet="confabstracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_presenter_confabstracts" Association="DB_A0B2A3_conferenceModel.FK_presenter_confabstracts">
+            <End Role="confabstract" EntitySet="confabstracts" />
+            <End Role="presenter" EntitySet="presenters" />
+          </AssociationSet>
+          <EntitySet Name="SysSettings" EntityType="DB_A0B2A3_conferenceModel.SysSetting" />
+          <EntitySet Name="SysFilePaths" EntityType="DB_A0B2A3_conferenceModel.SysFilePath" />
+          </EntityContainer>
+        <EntityType Name="lecture">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="starttime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="room" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ecu" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="studentclasses" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_classes" FromRole="lecture" ToRole="studentclass" />
+        </EntityType>
+        <EntityType Name="studentclass">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="classid" Type="Int32" Nullable="false" />
+          <Property Name="scandate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="lecture" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_classes" FromRole="studentclass" ToRole="lecture" />
+          <NavigationProperty Name="AspNetUser" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_AspNetUsers" FromRole="studentclass" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_studentclasses_classes">
+          <End Type="DB_A0B2A3_conferenceModel.lecture" Role="lecture" Multiplicity="1" />
+          <End Type="DB_A0B2A3_conferenceModel.studentclass" Role="studentclass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lecture">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="studentclass">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SysUserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="DB_A0B2A3_conferenceModel.FK_AspNetUsers_SysUserType" FromRole="SysUserType" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="categorylist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserTypeId" Type="Int32" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="DB_A0B2A3_conferenceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="DB_A0B2A3_conferenceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="SysUserType" Relationship="DB_A0B2A3_conferenceModel.FK_AspNetUsers_SysUserType" FromRole="AspNetUser" ToRole="SysUserType" />
+          <NavigationProperty Name="studentclasses" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_AspNetUsers" FromRole="AspNetUser" ToRole="studentclass" />
+          <NavigationProperty Name="AspNetRoles" Relationship="DB_A0B2A3_conferenceModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="confabstracts" Relationship="DB_A0B2A3_conferenceModel.FK_confabstracts_AspNetUsers" FromRole="AspNetUser" ToRole="confabstract" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="DB_A0B2A3_conferenceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DB_A0B2A3_conferenceModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="DB_A0B2A3_conferenceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DB_A0B2A3_conferenceModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_SysUserType">
+          <End Type="DB_A0B2A3_conferenceModel.SysUserType" Role="SysUserType" Multiplicity="0..1" />
+          <End Type="DB_A0B2A3_conferenceModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentclasses_AspNetUsers">
+          <End Type="DB_A0B2A3_conferenceModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="DB_A0B2A3_conferenceModel.studentclass" Role="studentclass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="studentclass">
+              <PropertyRef Name="studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="DB_A0B2A3_conferenceModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="DB_A0B2A3_conferenceModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="presenter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="abstractid" Type="Int32" />
+          <Property Name="fullname" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="organization" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="confabstract" Relationship="DB_A0B2A3_conferenceModel.FK_presenter_confabstracts" FromRole="presenter" ToRole="confabstract" />
+        </EntityType>
+        <EntityType Name="confabstract">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="objective1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="objective2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="objective3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="category" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="submitdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="submitted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="DB_A0B2A3_conferenceModel.FK_confabstracts_AspNetUsers" FromRole="confabstract" ToRole="AspNetUser" />
+          <NavigationProperty Name="presenters" Relationship="DB_A0B2A3_conferenceModel.FK_presenter_confabstracts" FromRole="confabstract" ToRole="presenter" />
+        </EntityType>
+        <Association Name="FK_confabstracts_AspNetUsers">
+          <End Type="DB_A0B2A3_conferenceModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DB_A0B2A3_conferenceModel.confabstract" Role="confabstract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="confabstract">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_presenter_confabstracts">
+          <End Type="DB_A0B2A3_conferenceModel.confabstract" Role="confabstract" Multiplicity="0..1" />
+          <End Type="DB_A0B2A3_conferenceModel.presenter" Role="presenter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="confabstract">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="presenter">
+              <PropertyRef Name="abstractid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SysSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfItem" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value2" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type3" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value3" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type4" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value4" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type5" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value5" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type6" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value6" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type7" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value7" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type8" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value8" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type9" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value9" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type10" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Value10" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SysFilePath">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FileType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LinkId" Type="Int32" />
+          <Property Name="UploadDate" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_A0B2A3_conferenceModelStoreContainer" CdmEntityContainer="DB_A0B2A3_conferenceEntities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lectures">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.lecture">
+              <MappingFragment StoreEntitySet="lectures">
+                <ScalarProperty Name="ecu" ColumnName="ecu" />
+                <ScalarProperty Name="room" ColumnName="room" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studentclasses">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.studentclass">
+              <MappingFragment StoreEntitySet="studentclasses">
+                <ScalarProperty Name="scandate" ColumnName="scandate" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="studentid" ColumnName="studentid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysUserTypes">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.SysUserType">
+              <MappingFragment StoreEntitySet="SysUserType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categorylists">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.categorylist">
+              <MappingFragment StoreEntitySet="categorylist">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="DB_A0B2A3_conferenceModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="presenters">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.presenter">
+              <MappingFragment StoreEntitySet="presenter">
+                <ScalarProperty Name="bio" ColumnName="bio" />
+                <ScalarProperty Name="organization" ColumnName="organization" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="abstractid" ColumnName="abstractid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="confabstracts">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.confabstract">
+              <MappingFragment StoreEntitySet="confabstracts">
+                <ScalarProperty Name="submitted" ColumnName="submitted" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="submitdate" ColumnName="submitdate" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="objective3" ColumnName="objective3" />
+                <ScalarProperty Name="objective2" ColumnName="objective2" />
+                <ScalarProperty Name="objective1" ColumnName="objective1" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysSettings">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.SysSetting">
+              <MappingFragment StoreEntitySet="SysSetting">
+                <ScalarProperty Name="Value10" ColumnName="Value10" />
+                <ScalarProperty Name="Type10" ColumnName="Type10" />
+                <ScalarProperty Name="Description10" ColumnName="Description10" />
+                <ScalarProperty Name="Value9" ColumnName="Value9" />
+                <ScalarProperty Name="Type9" ColumnName="Type9" />
+                <ScalarProperty Name="Description9" ColumnName="Description9" />
+                <ScalarProperty Name="Value8" ColumnName="Value8" />
+                <ScalarProperty Name="Type8" ColumnName="Type8" />
+                <ScalarProperty Name="Description8" ColumnName="Description8" />
+                <ScalarProperty Name="Value7" ColumnName="Value7" />
+                <ScalarProperty Name="Type7" ColumnName="Type7" />
+                <ScalarProperty Name="Description7" ColumnName="Description7" />
+                <ScalarProperty Name="Value6" ColumnName="Value6" />
+                <ScalarProperty Name="Type6" ColumnName="Type6" />
+                <ScalarProperty Name="Description6" ColumnName="Description6" />
+                <ScalarProperty Name="Value5" ColumnName="Value5" />
+                <ScalarProperty Name="Type5" ColumnName="Type5" />
+                <ScalarProperty Name="Description5" ColumnName="Description5" />
+                <ScalarProperty Name="Value4" ColumnName="Value4" />
+                <ScalarProperty Name="Type4" ColumnName="Type4" />
+                <ScalarProperty Name="Description4" ColumnName="Description4" />
+                <ScalarProperty Name="Value3" ColumnName="Value3" />
+                <ScalarProperty Name="Type3" ColumnName="Type3" />
+                <ScalarProperty Name="Description3" ColumnName="Description3" />
+                <ScalarProperty Name="Value2" ColumnName="Value2" />
+                <ScalarProperty Name="Type2" ColumnName="Type2" />
+                <ScalarProperty Name="Description2" ColumnName="Description2" />
+                <ScalarProperty Name="Value1" ColumnName="Value1" />
+                <ScalarProperty Name="Type1" ColumnName="Type1" />
+                <ScalarProperty Name="Description1" ColumnName="Description1" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="NumberOfItem" ColumnName="NumberOfItem" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysFilePaths">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.SysFilePath">
+              <MappingFragment StoreEntitySet="SysFilePath">
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="LinkId" ColumnName="LinkId" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

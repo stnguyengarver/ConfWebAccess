@@ -1,0 +1,308 @@
+﻿@model ConfWebAccess.Models.confabstract
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#objective1").on('keyup', function () {
+            if (this.value != " " && this.value != "" && this.value != null)
+            {
+                var words = this.value.match(/\S+/g).length;
+
+            if (words > 30) {
+                // Split the string on first 200 words and rejoin on spaces
+                var trimmed = $(this).val().split(/\s+/, 30).join(" ");
+                // Add a space at the end to make sure more typing creates new words
+                $(this).val(trimmed + " ");
+            }
+            else {
+                $('#display_count1').text(words);
+                $('#word_left1').text(30 - words);
+            }
+            }
+    
+        });
+
+
+                $("#objective2").on('keyup', function () {
+            if (this.value != " " && this.value != "" && this.value != null)
+            {
+                var words = this.value.match(/\S+/g).length;
+
+            if (words > 30) {
+                // Split the string on first 200 words and rejoin on spaces
+                var trimmed = $(this).val().split(/\s+/, 30).join(" ");
+                // Add a space at the end to make sure more typing creates new words
+                $(this).val(trimmed + " ");
+            }
+            else {
+                $('#display_count2').text(words);
+                $('#word_left2').text(30 - words);
+            }
+                    }
+
+
+                            $("#objective3").on('keyup', function () {
+            if (this.value != " " && this.value != "" && this.value != null)
+            {
+                var words = this.value.match(/\S+/g).length;
+
+            if (words > 30) {
+                // Split the string on first 200 words and rejoin on spaces
+                var trimmed = $(this).val().split(/\s+/, 30).join(" ");
+                // Add a space at the end to make sure more typing creates new words
+                $(this).val(trimmed + " ");
+            }
+            else {
+                $('#display_count3').text(words);
+                $('#word_left3').text(30 - words);
+            }
+            }
+    
+        });
+    
+        });
+
+
+
+
+
+
+    });
+</script>
+
+
+
+
+<h2>Abstract Submission</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.userid)
+
+
+
+        <div>
+            <table class="table">
+                <tr>
+                    <th> No. </th>
+                    <th>
+                        Presenter Full Name
+                    </th>
+                    <th>
+                        Organization
+                    </th>
+                    <th>
+                        Bio &nbsp; -  &nbsp; <i>Please give a 150 word (or less) summary of Presenter</i>
+                    </th>
+
+                    <th></th>
+                </tr>
+                @{
+                    int presenterno = 1;
+                    int i = 0;
+                    string var1 = "display_countx" + i;
+                    string var2 = "word_leftx" + i;
+                }
+                @foreach (var item in Model.presenters)
+                {
+                    <tr>
+                        <td>
+                            @(presenterno)
+                            @Html.Hidden("Presenters[" + @i + "].Id", item.id)
+                        </td>
+                        <td>
+                            @Html.TextBox("Presenters[" + @i + "].fullname", item.fullname, new { @class = "form-control", style = "background:#e0e0e0" })
+                        </td>
+                        <td>
+                            @Html.TextBox("Presenters[" + @i + "].organization", item.organization, new { @class = "form-control", style = "background:#e0e0e0" })
+                        </td>
+                        <td>
+                            @Html.TextArea("Presenters[" + @i + "].bio", item.bio, new { @class = "form-control", cols = 100, rows = 10, style = "min-width:100%;background:#e0e0e0" })
+                            Total word count: <span id="@var1" >0</span> words. Words left: <span id="@var2">150</span>
+                            <script type="text/javascript">
+
+                                $(document).ready(function () {
+
+                                    $("#Presenters_@(i)__bio").on('keyup', function () {
+                                        if (this.value != " " && this.value != "" && this.value != null) {
+                                            var words = this.value.match(/\S+/g).length;
+
+                                            if (words > 150) {
+                                                // Split the string on first 200 words and rejoin on spaces
+                                                var trimmed = $(this).val().split(/\s+/, 150).join(" ");
+                                                // Add a space at the end to make sure more typing creates new words
+                                                $(this).val(trimmed + " ");
+                                            }
+                                            else {
+                                                $('#@var1').text(words);
+                                                $('#@var2').text(150 - words);
+                                            }
+                                        }
+
+                                    });
+
+
+                                });
+                            </script>
+
+                        </td>
+
+                        <td>
+                            @if (presenterno > 1)
+                            {
+                                @Html.ActionLink("Delete Presenter", "DeletePresenter", new { id = item.id, abstractid = Model.id })
+                            }
+                            else
+                            {
+                                <text>Primary Presenter </text>
+                            }
+
+
+                        </td>
+                    </tr>
+
+                    presenterno++;
+                    i++;
+                    var1 = "display_countx" + i;
+                    var2 = "word_leftx" + i;
+                }
+
+            </table>
+            <input type="submit" value="Add Presenter" name="action" class="btn btn-primary" />
+
+
+        </div>
+        <br />
+        <div class="col-sm-12">
+            <hr style="width: 100%; color: black; height: 2px; background-color:black;" />
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Title of Abstract</b>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBox("title", Model.title, new { @class = "form-control", style = "background:#e0e0e0" })
+                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Track Category</b>
+            </div>
+
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.category, (SelectList)ViewBag.catlist, "Choose Category..", htmlAttributes: new { @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-10">
+                <b>Learning Objectives</b>
+                <br />
+                Please paste the three (3) learning objectives into the boxes below:
+                <br />
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Objective No. 1</b>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBox("objective1", Model.objective1, new { @class = "form-control", style = "min-width:100%;background:#e0e0e0" })
+                @Html.ValidationMessageFor(model => model.objective1, "", new { @class = "text-danger" })
+             
+                    Total word count: <span id="display_count1">0</span> words. Words left: <span id="word_left1">30</span>
+               
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Objective No. 2</b>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBox("objective2", Model.objective2, new { @class = "form-control", style = "min-width:100%;background:#e0e0e0" })
+                @Html.ValidationMessageFor(model => model.objective2, "", new { @class = "text-danger" })
+                Total word count: <span id="display_count2">0</span> words. Words left: <span id="word_left2">30</span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Objective No. 3</b>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBox("objective3", Model.objective3, new { @class = "form-control", style = "min-width:100%;background:#e0e0e0" })
+                @Html.ValidationMessageFor(model => model.objective3, "", new { @class = "text-danger" })
+                Total word count: <span id="display_count3">0</span> words. Words left: <span id="word_left3">30</span>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-10">
+                <b>Abstract Body</b> <br />
+                Please paste the body of your abstract below:
+            </div>
+        </div>
+        <br />
+
+
+
+        <div class="row">
+            <div class="col-md-2">
+                <b>Summary</b> <br />
+
+            </div>
+
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.summary, new { @class = "form-control", cols = 100, rows = 20, style = "min-width:100%;background:#e0e0e0" })
+                @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+            </div>
+ 
+        </div>
+
+        <br />
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-1">
+                <input type="submit" value="Save" name="action" class="btn btn-primary" />
+            </div>
+            <div class="col-md-1">
+                <input type="submit" value="Submit" name="action" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<br />
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

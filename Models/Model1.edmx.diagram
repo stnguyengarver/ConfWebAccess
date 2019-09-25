@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7539b9c047ba460d8af50836fcb75309" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.lecture" Width="1.5" PointX="5.375" PointY="6.875" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.studentclass" Width="1.5" PointX="7.625" PointY="4" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_studentclasses_classes" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.SysUserType" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.categorylist" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.AspNetUser" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_AspNetUsers_SysUserType" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_studentclasses_AspNetUsers" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.presenter" Width="1.5" PointX="7.5" PointY="11.875" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.confabstract" Width="1.5" PointX="5.25" PointY="10.625" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_confabstracts_AspNetUsers" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_presenter_confabstracts" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.SysSetting" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.SysFilePath" Width="1.5" PointX="7.375" PointY="7.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

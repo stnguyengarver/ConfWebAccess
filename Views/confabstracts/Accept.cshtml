@@ -1,0 +1,113 @@
+﻿@model ConfWebAccess.Models.confabstract
+
+@{
+    ViewBag.Title = "Accept";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Accept Abstract</h2>
+
+<h3>Are you sure you want to accept this?</h3>
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.summary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objective1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objective1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objective2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objective2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objective3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objective3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.submitdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submitdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.submitted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submitted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Accept" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

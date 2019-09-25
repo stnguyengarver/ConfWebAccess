@@ -1,0 +1,187 @@
+﻿@model ConfWebAccess.Models.confabstract
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+
+<h2>Abstract Submission</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.userid)
+
+
+
+        <div>
+            <table class="table">
+                <tr>
+                    <th> No. </th>
+                    <th>
+                        Presenter Full Name
+                    </th>
+                    <th>
+                        Organization
+                    </th>
+                    <th>
+                        Bio 
+                    </th>
+
+                    <th></th>
+                </tr>
+                @{
+                    int presenterno = 1;
+                    int i = 0;
+           
+                }
+                @foreach (var item in Model.presenters)
+                {
+                    <tr>
+                        <td>
+                            @(presenterno)
+                        
+                        </td>
+                        <td>
+                            @( item.fullname)
+                        </td>
+                        <td>
+                            @( item.organization)
+                        </td>
+                        <td>
+                            @( item.bio)
+                       
+                    
+
+                        </td>
+
+                        <td>
+                            @if (presenterno == 1)
+                      
+                            {
+                                <text>Primary Presenter </text>
+                            }
+
+
+                        </td>
+                    </tr>
+
+                    presenterno++;
+                    i++;
+                
+                }
+
+            </table>
+           
+
+
+        </div>
+        <br />
+        <div class="col-sm-12">
+            <hr style="width: 100%; color: black; height: 2px; background-color:black;" />
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Title of Abstract</b>
+            </div>
+            <div class="col-md-10">
+                @(Model.title)
+    
+            </div>
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Track Category</b>
+            </div>
+
+            <div class="col-md-10">
+                @(Model.category)
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-10">
+                <b>Learning Objectives</b>
+                <br />
+             
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Objective No. 1</b>
+            </div>
+            <div class="col-md-10">
+                @(Model.objective1)
+
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Objective No. 2</b>
+            </div>
+            <div class="col-md-10">
+                @( Model.objective2)
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <b>Objective No. 3</b>
+            </div>
+            <div class="col-md-10">
+                @(Model.objective3)
+
+            </div>
+        </div>
+
+        <br />
+
+        <br />
+
+
+        <div class="row">
+            <div class="col-md-2">
+                <b>Summary</b> <br />
+
+            </div>
+
+            <div class="col-md-10 container">
+                @(Model.summary)
+  
+            </div>
+
+        </div>
+
+        <br />
+
+
+
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

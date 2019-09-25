@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ConfWebAccess.Models.confabstract>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Abstract Submissions</h2>
+
+<br />
+
+@using (Html.BeginForm("Create", "confabstracts", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-4">
+            <input type="submit" value="Create New Abstract Submission" name="action" class="btn btn-primary" />
+        </div>
+    </div>
+
+    <br />
+    <table class="table">
+        <tr>
+            <th>No.</th>
+            <th>
+                Title of Abstract
+            </th>
+            <th>
+                Abstract Category
+            </th>
+
+            <th>Primary Author</th>
+            <th>Submitter Email</th>
+            <th>
+                Submission Date
+            </th>
+            <th>
+               Status
+            </th>
+            <th></th>
+        </tr>
+        @{
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @(i)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category)
+        </td>
+        <td>
+
+            @Html.DisplayFor(modelItem => item.presenters.FirstOrDefault().fullname)
+        </td>
+        <td>
+
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @if(item.status.Trim() == "In Progress")
+            {
+                <text> -- </text>
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.submitdate)
+            }
+
+        </td>
+        <td>
+            @(item.status)
+        </td>
+        <td>
+
+            @if (item.status.Trim() == "In Progress")
+            {
+
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.id });
+                <text>|</text>
+                @Html.ActionLink("Delete", "Delete", new { id = item.id });
+            }
+            else
+            {
+                @Html.ActionLink("View", "Details", new { id = item.id });
+                if ((bool)ViewBag.Admin && item.status.Trim() != "Accepted")
+                {
+
+                    <text>|</text>
+                    @Html.ActionLink("Revert", "Revert", new { id = item.id });
+
+                        <text>|</text>
+                        @Html.ActionLink("Accept", "Accept", new { id = item.id });
+                  
+
+                }
+            }
+
+        </td>
+    </tr>
+
+            i++;
+        }
+
+    </table>
+
+
+}

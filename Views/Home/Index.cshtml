@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+    <div class="row">
+        <div class="row">
+
+            <div class="col-md-8">
+
+                <img src="~/media/TX-APWAChLogo.jpg" width="600" />
+            </div>
+
+            <div class="col-md-4">
+                TPWA 2020 Conference
+                <br />
+                June 17-19, 2020
+                <br />
+                Galveston Moody Gardens
+            </div>
+
+
+
+        </div>
+
+        <br />
+
+        <h2>Home</h2>
+        <br />
+
+        <p class="lead"><b>Abstract Submission for the TPWA 2020 Conference is open.</b></p>
+
+        @if (!Request.IsAuthenticated)
+        {
+
+
+            <p class="lead">Register a new account or login using the two links below.</p>
+            <div class="row">
+                <div class="col-md-2">
+                    <p><a href="/Account/Login" class="btn btn-primary btn-lg">Login ... &raquo;</a></p>
+                </div>
+                <div class="col-md-2">
+                    <p><a href="/Account/Register" class="btn btn-primary btn-lg">Register Account ... &raquo;</a></p>
+                </div>
+            </div>
+        }
+
+
+
+        <p class="lead"><b>The deadline for abstract submittals is December 1, 2019.</b></p>
+
+        <p class="lead">The Education Committee will review your submission and inform accepted abstract applicants of their decision by <u><b>February 2020</b></u>.  All <u>submitted</u> abstracts will be notified of their final status by <u><b>March 2020</b></u>.</p>
+
+
+
+
+        @if (ViewBag.QRCodeImage != null)
+        {
+            <img src="@ViewBag.QRCodeImage" alt="" style="height:150px;width:150px" />
+        }
+
+
+    </div>
+
