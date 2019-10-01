@@ -12,6 +12,8 @@ namespace ConfWebAccess.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+
+        public AspNetUser CurrentUser { get; set; }
     }
 
     public class ManageLoginsViewModel

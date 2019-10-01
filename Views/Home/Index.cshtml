@@ -2,47 +2,57 @@
     ViewBag.Title = "Home Page";
 }
 
-    <div class="row">
-        <div class="row">
 
-            <div class="col-md-8">
+<div class="row">
 
-                <img src="~/media/TX-APWAChLogo.jpg" width="600" />
-            </div>
+    <div class="col-sm-offset-1 col-sm-8">
 
-            <div class="col-md-4">
-                TPWA 2020 Conference
-                <br />
-                June 17-19, 2020
-                <br />
-                Galveston Moody Gardens
-            </div>
+        <img src="~/media/TPWA-Conference-Web-banner.jpg" width="600" />
+    </div>
 
-
-
-        </div>
-
+    <div class="col-md-2">
+        TPWA 2020 Conference
         <br />
+        June 17-19, 2020
+        <br />
+        Galveston Moody Gardens
+    </div>
 
+
+
+</div>
+
+<br />
+<div class="row">
+    <div class="col-sm-offset-1 col-sm-10">
         <h2>Home</h2>
         <br />
 
         <p class="lead"><b>Abstract Submission for the TPWA 2020 Conference is open.</b></p>
 
-        @if (!Request.IsAuthenticated)
-        {
 
 
-            <p class="lead">Register a new account or login using the two links below.</p>
-            <div class="row">
-                <div class="col-md-2">
-                    <p><a href="/Account/Login" class="btn btn-primary btn-lg">Login ... &raquo;</a></p>
-                </div>
-                <div class="col-md-2">
-                    <p><a href="/Account/Register" class="btn btn-primary btn-lg">Register Account ... &raquo;</a></p>
-                </div>
-            </div>
-        }
+
+
+
+@if (!Request.IsAuthenticated)
+{
+
+
+
+    <p class="lead">Register a new account or login using the two links below.</p>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <p><a href="/Account/Login" class="btn btn-primary btn-lg">Login</a></p>
+        </div>
+        <div class="col-sm-3">
+            <p><a href="/Account/Register" class="btn btn-primary btn-lg">Register Account</a></p>
+        </div>
+    </div>
+
+
+}
 
 
 
@@ -58,6 +68,6 @@
             <img src="@ViewBag.QRCodeImage" alt="" style="height:150px;width:150px" />
         }
 
-
     </div>
+</div>
 

@@ -48,7 +48,10 @@ namespace ConfWebAccess.Controllers
             return View(confabstract);
         }
 
-
+        public ActionResult Create1()
+        {
+            return Create();
+        }
 
         // POST: confabstracts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -58,7 +61,7 @@ namespace ConfWebAccess.Controllers
         public ActionResult Create()
         {
             confabstract confabstract = new confabstract();
-            confabstract.title = "title...";
+         
             confabstract.status = "In Progress";
                 confabstract.userid = CurrentUser.Id;
                 db.confabstracts.Add(confabstract);

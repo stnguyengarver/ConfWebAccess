@@ -94,6 +94,9 @@
             <th>
                 @Html.ActionLink("Job Title", "Index", new { sort = "jobtitle" })
             </th>
+            <th>
+                @Html.ActionLink("Company", "Index", new { sort = "company" })
+            </th>
             <th></th>
         </tr>
         @{
@@ -123,59 +126,66 @@
                 sorteduser = Model.OrderBy(x => x.Title);
             }
 
-
+                        if (sortby == "company")
+            {
+                sorteduser = Model.OrderBy(x => x.Company);
+            }
         }
 
 
         @foreach (var item in sorteduser)
         {
-            <tr>
+    <tr>
 
-                @if (item.LockoutEndDateUtc > DateTime.Now.AddYears(1))
-                {
-                    <td><font color="red">@Html.ActionLink("Unlock", "Unlock", new { id = item.Id })</font></td>
-                }
-                else
-                {
-                    <td>&nbsp;</td>
-                }
-
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-     
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                    @if (item.EmailConfirmed == false)
-                    {
-                        <font color="red">Not Confirmed</font>
-                    }
-
-                </td>
+        @if (item.LockoutEndDateUtc > DateTime.Now.AddYears(1))
+        {
+            <td><font color="red">@Html.ActionLink("Unlock", "Unlock", new { id = item.Id })</font></td>
+        }
+        else
+        {
+            <td>&nbsp;</td>
+        }
 
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.SysUserType.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                 
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+            @if (item.EmailConfirmed == false)
+            {
+                <font color="red">Not Confirmed</font>
+            }
+
+        </td>
 
 
-     
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+        <td>
+            @Html.DisplayFor(modelItem => item.SysUserType.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
 
-                </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company)
+        </td>
+        <td>
 
 
 
-            </tr>
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+
+        </td>
+
+
+
+    </tr>
         }
 
     </table>

@@ -12,62 +12,59 @@
     $(document).ready(function () {
 
         $("#objective1").on('keyup', function () {
-            if (this.value != " " && this.value != "" && this.value != null)
-            {
+            if (this.value != " " && this.value != "" && this.value != null) {
                 var words = this.value.match(/\S+/g).length;
 
-            if (words > 30) {
-                // Split the string on first 200 words and rejoin on spaces
-                var trimmed = $(this).val().split(/\s+/, 30).join(" ");
-                // Add a space at the end to make sure more typing creates new words
-                $(this).val(trimmed + " ");
+                if (words > 30) {
+                    // Split the string on first 200 words and rejoin on spaces
+                    var trimmed = $(this).val().split(/\s+/, 30).join(" ");
+                    // Add a space at the end to make sure more typing creates new words
+                    $(this).val(trimmed + " ");
+                }
+                else {
+                    $('#display_count1').text(words);
+                    $('#word_left1').text(30 - words);
+                }
             }
-            else {
-                $('#display_count1').text(words);
-                $('#word_left1').text(30 - words);
-            }
-            }
-    
+
         });
 
 
-                $("#objective2").on('keyup', function () {
-            if (this.value != " " && this.value != "" && this.value != null)
-            {
+        $("#objective2").on('keyup', function () {
+            if (this.value != " " && this.value != "" && this.value != null) {
                 var words = this.value.match(/\S+/g).length;
 
-            if (words > 30) {
-                // Split the string on first 200 words and rejoin on spaces
-                var trimmed = $(this).val().split(/\s+/, 30).join(" ");
-                // Add a space at the end to make sure more typing creates new words
-                $(this).val(trimmed + " ");
+                if (words > 30) {
+                    // Split the string on first 200 words and rejoin on spaces
+                    var trimmed = $(this).val().split(/\s+/, 30).join(" ");
+                    // Add a space at the end to make sure more typing creates new words
+                    $(this).val(trimmed + " ");
+                }
+                else {
+                    $('#display_count2').text(words);
+                    $('#word_left2').text(30 - words);
+                }
             }
-            else {
-                $('#display_count2').text(words);
-                $('#word_left2').text(30 - words);
-            }
+
+
+            $("#objective3").on('keyup', function () {
+                if (this.value != " " && this.value != "" && this.value != null) {
+                    var words = this.value.match(/\S+/g).length;
+
+                    if (words > 30) {
+                        // Split the string on first 200 words and rejoin on spaces
+                        var trimmed = $(this).val().split(/\s+/, 30).join(" ");
+                        // Add a space at the end to make sure more typing creates new words
+                        $(this).val(trimmed + " ");
                     }
+                    else {
+                        $('#display_count3').text(words);
+                        $('#word_left3').text(30 - words);
+                    }
+                }
 
+            });
 
-                            $("#objective3").on('keyup', function () {
-            if (this.value != " " && this.value != "" && this.value != null)
-            {
-                var words = this.value.match(/\S+/g).length;
-
-            if (words > 30) {
-                // Split the string on first 200 words and rejoin on spaces
-                var trimmed = $(this).val().split(/\s+/, 30).join(" ");
-                // Add a space at the end to make sure more typing creates new words
-                $(this).val(trimmed + " ");
-            }
-            else {
-                $('#display_count3').text(words);
-                $('#word_left3').text(30 - words);
-            }
-            }
-    
-        });
-    
         });
 
 
@@ -133,7 +130,7 @@
                         </td>
                         <td>
                             @Html.TextArea("Presenters[" + @i + "].bio", item.bio, new { @class = "form-control", cols = 100, rows = 10, style = "min-width:100%;background:#e0e0e0" })
-                            Total word count: <span id="@var1" >0</span> words. Words left: <span id="@var2">150</span>
+                            Total word count: <span id="@var1">0</span> words. Words left: <span id="@var2">150</span>
                             <script type="text/javascript">
 
                                 $(document).ready(function () {
@@ -232,9 +229,9 @@
             <div class="col-md-10">
                 @Html.TextBox("objective1", Model.objective1, new { @class = "form-control", style = "min-width:100%;background:#e0e0e0" })
                 @Html.ValidationMessageFor(model => model.objective1, "", new { @class = "text-danger" })
-             
-                    Total word count: <span id="display_count1">0</span> words. Words left: <span id="word_left1">30</span>
-               
+
+                Total word count: <span id="display_count1">0</span> words. Words left: <span id="word_left1">30</span>
+
             </div>
         </div>
         <br />
@@ -282,7 +279,7 @@
                 @Html.TextAreaFor(model => model.summary, new { @class = "form-control", cols = 100, rows = 20, style = "min-width:100%;background:#e0e0e0" })
                 @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
             </div>
- 
+
         </div>
 
         <br />
@@ -299,6 +296,7 @@
         </div>
     </div>
 }
+
 
 
 <br />

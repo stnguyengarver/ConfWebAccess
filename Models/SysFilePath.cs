@@ -19,5 +19,6 @@ namespace ConfWebAccess.Models
         public string FileType { get; set; }
         public Nullable<int> LinkId { get; set; }
         public Nullable<System.DateTime> UploadDate { get; set; }
+        public string FilePath { get; set; }
     }
 }

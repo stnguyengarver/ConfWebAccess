@@ -8,9 +8,7 @@
         <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.lecture" Width="1.5" PointX="5.375" PointY="6.875" />
         <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.studentclass" Width="1.5" PointX="7.625" PointY="4" />
-        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_studentclasses_classes" />
         <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.SysUserType" Width="1.5" PointX="0.75" PointY="0.5" />
         <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.categorylist" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.AspNetUser" Width="1.5" PointX="3" PointY="0.75" />
@@ -19,12 +17,17 @@
         <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_AspNetUsers_SysUserType" />
         <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_studentclasses_AspNetUsers" />
         <AssociationConnector Association="DB_A0B2A3_conferenceModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.presenter" Width="1.5" PointX="7.5" PointY="11.875" />
-        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.confabstract" Width="1.5" PointX="5.25" PointY="10.625" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.presenter" Width="1.5" PointX="8.25" PointY="7.375" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.confabstract" Width="1.5" PointX="5.25" PointY="6.875" />
         <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_confabstracts_AspNetUsers" />
         <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_presenter_confabstracts" />
-        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.SysSetting" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.SysFilePath" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.SysSetting" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.SysFilePath" Width="1.5" PointX="10" PointY="0.875" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.survey" Width="1.5" PointX="10.5" PointY="8.875" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_survey_AspNetUsers" />
+        <EntityTypeShape EntityType="DB_A0B2A3_conferenceModel.lecture1" Width="1.5" PointX="11.625" PointY="4.25" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_studentclasses_classes1" />
+        <AssociationConnector Association="DB_A0B2A3_conferenceModel.FK_survey_lectures1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

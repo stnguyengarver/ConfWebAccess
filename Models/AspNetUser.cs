@@ -22,6 +22,7 @@ namespace ConfWebAccess.Models
             this.studentclasses = new HashSet<studentclass>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.confabstracts = new HashSet<confabstract>();
+            this.surveys = new HashSet<survey>();
         }
     
         public string Id { get; set; }
@@ -41,6 +42,7 @@ namespace ConfWebAccess.Models
         public string Title { get; set; }
         public Nullable<int> UserTypeId { get; set; }
         public bool Active { get; set; }
+        public string Company { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -53,5 +55,7 @@ namespace ConfWebAccess.Models
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<confabstract> confabstracts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<survey> surveys { get; set; }
     }
 }

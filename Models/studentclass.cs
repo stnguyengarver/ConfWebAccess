@@ -21,5 +21,6 @@ namespace ConfWebAccess.Models
     
         public virtual lecture lecture { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual lecture1 lecture1 { get; set; }
     }
 }

@@ -33,6 +33,26 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <style>
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            .dropdown-submenu .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -1px;
+            }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-submenu a.test').on("click", function (e) {
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -46,25 +66,79 @@
                 </button>
                 @Html.ActionLink("TPWA Conference App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @if( usertype == "SysAdmin")
+                    <li>@Html.ActionLink("HOME", "Index", "Home")</li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/confabstracts">ABSTRACTS <span class="caret" /></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("NEW SUBMITTAL", "Create1", "confabstracts")</li>
+                            <li>@Html.ActionLink("EDIT SUBMITTALS", "Index", "confabstracts")</li>
+                        </ul>
+
+                    </li>
+
+
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">CONFERENCE <span class="caret" /></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("BADGE", "Index", "Badge")</li>
+                            <li class="dropdown-submenu">
+                                <a class="test" tabindex="-1" href="/agenda">AGENDA <span class="caret" /></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Session Tracks", "sessiontracks", "agenda")</li>
+                                    <li>@Html.ActionLink("Conference Schedule", "schedule", "agenda")</li>
+                                </ul>
+
+                            </li>
+
+                            <li class="dropdown-submenu">
+                                <a class="test" tabindex="-1" href="/maps">MAPS <span class="caret" /></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Convention Center", "overview", "maps")</li>
+                                    <li>@Html.ActionLink("Exhibitor Floor", "exhibitor", "maps")</li>
+                                    <li>@Html.ActionLink("Classroom Layout", "classroom", "maps")</li>
+                                </ul>
+
+                            </li>
+
+                            <li class="dropdown-submenu">
+                                <a class="test" tabindex="-1" href="/ceu">CEU Tracking <span class="caret" /></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Classes Attended", "attended", "classes")</li>
+                                    <li>@Html.ActionLink("Class Intinerary", "intinerary", "classes")</li>
+                                    <li>@Html.ActionLink("Class Survey", "survey", "classes")</li>
+                                </ul>
+
+                            </li>
+                        </ul>
+
+                    </li>
+
+
+
+
+
+                    @if (usertype == "SysAdmin")
                     {
-                        <li>@Html.ActionLink("Abstracts", "Index", "confabstracts")</li>
-                        <li>@Html.ActionLink("Lectures", "Index", "Lectures")</li>
-                        <li>@Html.ActionLink("My Classes", "Index", "MyClass")</li>
-                        <li>@Html.ActionLink("Conference Map", "Index", "Map")</li>
-                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/confabstracts">ADMIN <span class="caret" /></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Lectures", "Index", "Lectures")</li>
+                                <li>@Html.ActionLink("My Classes", "Index", "MyClass")</li>
+                                <li>@Html.ActionLink("Conference Map", "Index", "Map")</li>
+                                <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                            </ul>
+
+                        </li>
+
+                       
                     }
-                    else
-                    {
-                        <li>@Html.ActionLink("Abstracts", "Index", "confabstracts")</li>
 
-
-
-
-                    }
 
 
 

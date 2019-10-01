@@ -37,7 +37,7 @@
                         Organization
                     </th>
                     <th>
-                        Bio 
+                        Bio
                     </th>
 
                     <th></th>
@@ -45,31 +45,31 @@
                 @{
                     int presenterno = 1;
                     int i = 0;
-           
+
                 }
                 @foreach (var item in Model.presenters)
                 {
                     <tr>
                         <td>
                             @(presenterno)
-                        
+
                         </td>
                         <td>
-                            @( item.fullname)
+                            @(item.fullname)
                         </td>
                         <td>
-                            @( item.organization)
+                            @(item.organization)
                         </td>
                         <td>
-                            @( item.bio)
-                       
-                    
+                            @(item.bio)
+
+
 
                         </td>
 
                         <td>
                             @if (presenterno == 1)
-                      
+
                             {
                                 <text>Primary Presenter </text>
                             }
@@ -80,11 +80,11 @@
 
                     presenterno++;
                     i++;
-                
+
                 }
 
             </table>
-           
+
 
 
         </div>
@@ -100,7 +100,7 @@
             </div>
             <div class="col-md-10">
                 @(Model.title)
-    
+
             </div>
 
         </div>
@@ -120,7 +120,7 @@
             <div class="col-md-10">
                 <b>Learning Objectives</b>
                 <br />
-             
+
             </div>
         </div>
 
@@ -141,7 +141,7 @@
                 <b>Objective No. 2</b>
             </div>
             <div class="col-md-10">
-                @( Model.objective2)
+                @(Model.objective2)
 
             </div>
         </div>
@@ -169,7 +169,7 @@
 
             <div class="col-md-10 container">
                 @(Model.summary)
-  
+
             </div>
 
         </div>
@@ -181,6 +181,26 @@
 
     </div>
 }
+
+<br />
+<br />
+
+<br />
+
+
+@if (Model.status.Trim() == "Accepted")
+{
+
+
+    @Html.ActionLink("Upload Presentations", "Index", "Import", new { id = Model.id }, null)
+
+
+
+}
+
+<br />
+<br />
+<br />
 
 <div>
     @Html.ActionLink("Back to List", "Index")

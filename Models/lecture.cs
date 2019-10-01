@@ -18,6 +18,7 @@ namespace ConfWebAccess.Models
         public lecture()
         {
             this.studentclasses = new HashSet<studentclass>();
+            this.surveys = new HashSet<survey>();
         }
     
         public int id { get; set; }
@@ -26,8 +27,11 @@ namespace ConfWebAccess.Models
         public string duration { get; set; }
         public string room { get; set; }
         public Nullable<decimal> ecu { get; set; }
+        public string code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<studentclass> studentclasses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<survey> surveys { get; set; }
     }
 }

@@ -81,6 +81,9 @@ namespace ConfWebAccess.Models
         [Display(Name = "Job Title")]
         public string Title { get; set; }
 
+        [Display(Name = "Company")]
+        public string Company { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

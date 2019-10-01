@@ -123,6 +123,7 @@ namespace ConfWebAccess.Controllers
                 currentuser.LastName = user.LastName;
                 currentuser.UserTypeId = user.UserTypeId;
                currentuser.Title = user.Title;
+                currentuser.Company = user.Company;
                 currentuser.Active = user.Active;
 
                 if (currentuser.LockoutEndDateUtc != null) //user is locked

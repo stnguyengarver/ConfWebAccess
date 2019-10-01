@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,20 +14,24 @@ namespace ConfWebAccess.Controllers
         // GET: Import
 
             [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            ViewBag.id = id;
+
+            var list = db.SysFilePaths.Where(x => x.LinkId == id);
+
+            return View(list);
         }
 
 
         [Authorize]
-        public ActionResult SaveImport(confabstract input, HttpPostedFileBase upload, HttpPostedFileBase upload2)
+        public ActionResult SaveImport(int id, HttpPostedFileBase upload)
         {
             Random rand = new Random();
 
             if(upload != null)
             {
-                string FileName = "Biography_" + rand.Next(1000, 9999).ToString() + "_" + System.IO.Path.GetFileName(upload.FileName);
+                string FileName = "Presentation_" + rand.Next(1000, 9999).ToString() + "_" + System.IO.Path.GetFileName(upload.FileName);
 
                 string namefromdb = "~/Temp/" + FileName;
 
@@ -36,44 +41,56 @@ namespace ConfWebAccess.Controllers
 
                 upload.SaveAs(path);
 
-                 FileName = "Abstract_" + rand.Next(1000, 9999).ToString() + "_" + System.IO.Path.GetFileName(upload2.FileName);
-
-                 namefromdb = "~/Temp/" + FileName;
-
-                 path = HttpContext.Server.MapPath(namefromdb);
-
-             //   input.abstractfile = FileName;
-
-                upload.SaveAs(path);
+        
 
 
-                if (ModelState.IsValid)
-                {
-                    input.userid = CurrentUser.Id;
-                    db.confabstracts.Add(input);
+                    SysFilePath newupload = new SysFilePath();
+                    newupload.FileName = FileName;
+                newupload.FilePath = path;
+                    newupload.FileType = "Presentation";
+                newupload.UploadDate = DateTime.Now;
+                    newupload.LinkId = id;
+
+                    db.SysFilePaths.Add(newupload);
                     db.SaveChanges();
                     return View("Success");
-                }
+               
 
-                return View("Success");
-            }else
-            {
-                if (ModelState.IsValid)
-                {
-                    input.userid = CurrentUser.Id;
-                    db.confabstracts.Add(input);
-                    db.SaveChanges();
-                    return View("Success");
-                }
+               
             }
      
 
-            return View("Index");
+            return RedirectToAction("Index",new { id = id });
         }
 
         public ActionResult Success()
         {
             return View();
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SysFilePath sys = db.SysFilePaths.Find(id);
+            if (sys == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sys);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+
+            SysFilePath sys = db.SysFilePaths.Find(id);
+            db.SysFilePaths.Remove(sys);
+            db.SaveChanges();
+            return RedirectToAction("Index", new { id = sys.LinkId });
         }
     }
 }

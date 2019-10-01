@@ -58,6 +58,7 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company" Type="nvarchar" MaxLength="50" />
           <Property Name="UserTypeId" Type="int" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
@@ -90,7 +91,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="description" Type="nvarchar" MaxLength="50" />
+          <Property Name="code" Type="nchar" MaxLength="10" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
           <Property Name="starttime" Type="nvarchar" MaxLength="50" />
           <Property Name="duration" Type="nvarchar" MaxLength="50" />
           <Property Name="room" Type="nvarchar" MaxLength="50" />
@@ -115,12 +117,30 @@
           <Property Name="classid" Type="int" Nullable="false" />
           <Property Name="scandate" Type="datetime" />
         </EntityType>
+        <EntityType Name="survey">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="lectureid" Type="int" Nullable="false" />
+          <Property Name="Q1" Type="int" Nullable="false" />
+          <Property Name="Q2" Type="int" Nullable="false" />
+          <Property Name="Q3" Type="int" Nullable="false" />
+          <Property Name="Q4" Type="int" Nullable="false" />
+          <Property Name="Q5" Type="int" Nullable="false" />
+          <Property Name="Q6" Type="int" Nullable="false" />
+          <Property Name="Q7" Type="int" Nullable="false" />
+          <Property Name="Q8" Type="int" Nullable="false" />
+          <Property Name="Q9" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SysFilePath">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FileName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="255" />
           <Property Name="FileType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LinkId" Type="int" />
           <Property Name="UploadDate" Type="datetime" />
@@ -288,6 +308,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_survey_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="survey" Type="Self.survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_lectures">
+          <End Role="lectures" Type="Self.lectures" Multiplicity="1" />
+          <End Role="survey" Type="Self.survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lectures">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="lectureid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DB_A0B2A3_conferenceModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -299,6 +343,7 @@
           <EntitySet Name="lectures" EntityType="Self.lectures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="presenter" EntityType="Self.presenter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="studentclasses" EntityType="Self.studentclasses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="survey" EntityType="Self.survey" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysFilePath" EntityType="Self.SysFilePath" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysSetting" EntityType="Self.SysSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysUserType" EntityType="Self.SysUserType" Schema="dbo" store:Type="Tables" />
@@ -337,6 +382,14 @@
           <AssociationSet Name="FK_studentclasses_classes" Association="Self.FK_studentclasses_classes">
             <End Role="lectures" EntitySet="lectures" />
             <End Role="studentclasses" EntitySet="studentclasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_AspNetUsers" Association="Self.FK_survey_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="survey" EntitySet="survey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_lectures" Association="Self.FK_survey_lectures">
+            <End Role="lectures" EntitySet="lectures" />
+            <End Role="survey" EntitySet="survey" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -417,18 +470,38 @@
           </AssociationSet>
           <EntitySet Name="SysSettings" EntityType="DB_A0B2A3_conferenceModel.SysSetting" />
           <EntitySet Name="SysFilePaths" EntityType="DB_A0B2A3_conferenceModel.SysFilePath" />
+          <EntitySet Name="surveys" EntityType="DB_A0B2A3_conferenceModel.survey" />
+          <AssociationSet Name="FK_survey_AspNetUsers" Association="DB_A0B2A3_conferenceModel.FK_survey_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="survey" EntitySet="surveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_lectures" Association="DB_A0B2A3_conferenceModel.FK_survey_lectures">
+            <End Role="lecture" EntitySet="lectures" />
+            <End Role="survey" EntitySet="surveys" />
+          </AssociationSet>
+          <EntitySet Name="lecture1" EntityType="DB_A0B2A3_conferenceModel.lecture1" />
+          <AssociationSet Name="FK_studentclasses_classes1" Association="DB_A0B2A3_conferenceModel.FK_studentclasses_classes1">
+            <End Role="lecture1" EntitySet="lecture1" />
+            <End Role="studentclass" EntitySet="studentclasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_survey_lectures1" Association="DB_A0B2A3_conferenceModel.FK_survey_lectures1">
+            <End Role="lecture1" EntitySet="lecture1" />
+            <End Role="survey" EntitySet="surveys" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="lecture">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="starttime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="room" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ecu" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="studentclasses" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_classes" FromRole="lecture" ToRole="studentclass" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="surveys" Relationship="DB_A0B2A3_conferenceModel.FK_survey_lectures" FromRole="lecture" ToRole="survey" />
         </EntityType>
         <EntityType Name="studentclass">
           <Key>
@@ -440,6 +513,7 @@
           <Property Name="scandate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="lecture" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_classes" FromRole="studentclass" ToRole="lecture" />
           <NavigationProperty Name="AspNetUser" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_AspNetUsers" FromRole="studentclass" ToRole="AspNetUser" />
+          <NavigationProperty Name="lecture1" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_classes1" FromRole="studentclass" ToRole="lecture1" />
         </EntityType>
         <Association Name="FK_studentclasses_classes">
           <End Type="DB_A0B2A3_conferenceModel.lecture" Role="lecture" Multiplicity="1" />
@@ -496,6 +570,8 @@
           <NavigationProperty Name="studentclasses" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_AspNetUsers" FromRole="AspNetUser" ToRole="studentclass" />
           <NavigationProperty Name="AspNetRoles" Relationship="DB_A0B2A3_conferenceModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="confabstracts" Relationship="DB_A0B2A3_conferenceModel.FK_confabstracts_AspNetUsers" FromRole="AspNetUser" ToRole="confabstract" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="surveys" Relationship="DB_A0B2A3_conferenceModel.FK_survey_AspNetUsers" FromRole="AspNetUser" ToRole="survey" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="DB_A0B2A3_conferenceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -651,11 +727,94 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="FileType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LinkId" Type="Int32" />
           <Property Name="UploadDate" Type="DateTime" Precision="3" />
+          <Property Name="FilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="survey">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="lectureid" Type="Int32" Nullable="false" />
+          <Property Name="Q1" Type="Int32" Nullable="false" />
+          <Property Name="Q2" Type="Int32" Nullable="false" />
+          <Property Name="Q3" Type="Int32" Nullable="false" />
+          <Property Name="Q4" Type="Int32" Nullable="false" />
+          <Property Name="Q5" Type="Int32" Nullable="false" />
+          <Property Name="Q6" Type="Int32" Nullable="false" />
+          <Property Name="Q7" Type="Int32" Nullable="false" />
+          <Property Name="Q8" Type="Int32" Nullable="false" />
+          <Property Name="Q9" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DB_A0B2A3_conferenceModel.FK_survey_AspNetUsers" FromRole="survey" ToRole="AspNetUser" />
+          <NavigationProperty Name="lecture" Relationship="DB_A0B2A3_conferenceModel.FK_survey_lectures" FromRole="survey" ToRole="lecture" />
+          <NavigationProperty Name="lecture1" Relationship="DB_A0B2A3_conferenceModel.FK_survey_lectures1" FromRole="survey" ToRole="lecture1" />
+        </EntityType>
+        <Association Name="FK_survey_AspNetUsers">
+          <End Type="DB_A0B2A3_conferenceModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="DB_A0B2A3_conferenceModel.survey" Role="survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_lectures">
+          <End Type="DB_A0B2A3_conferenceModel.lecture" Role="lecture" Multiplicity="1" />
+          <End Type="DB_A0B2A3_conferenceModel.survey" Role="survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lecture">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="lectureid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="lecture1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="starttime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="room" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ecu" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="studentclasses" Relationship="DB_A0B2A3_conferenceModel.FK_studentclasses_classes1" FromRole="lecture1" ToRole="studentclass" />
+          <NavigationProperty Name="surveys" Relationship="DB_A0B2A3_conferenceModel.FK_survey_lectures1" FromRole="lecture1" ToRole="survey" />
+        </EntityType>
+        <Association Name="FK_studentclasses_classes1">
+          <End Type="DB_A0B2A3_conferenceModel.lecture1" Role="lecture1" Multiplicity="1" />
+          <End Type="DB_A0B2A3_conferenceModel.studentclass" Role="studentclass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lecture1">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="studentclass">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_survey_lectures1">
+          <End Type="DB_A0B2A3_conferenceModel.lecture1" Role="lecture1" Multiplicity="1" />
+          <End Type="DB_A0B2A3_conferenceModel.survey" Role="survey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lecture1">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="survey">
+              <PropertyRef Name="lectureid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -692,6 +851,7 @@
           <EntitySetMapping Name="lectures">
             <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.lecture">
               <MappingFragment StoreEntitySet="lectures">
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="ecu" ColumnName="ecu" />
                 <ScalarProperty Name="room" ColumnName="room" />
                 <ScalarProperty Name="duration" ColumnName="duration" />
@@ -731,6 +891,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -831,11 +992,43 @@
           <EntitySetMapping Name="SysFilePaths">
             <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.SysFilePath">
               <MappingFragment StoreEntitySet="SysFilePath">
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
                 <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
                 <ScalarProperty Name="LinkId" ColumnName="LinkId" />
                 <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="surveys">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.survey">
+              <MappingFragment StoreEntitySet="survey">
+                <ScalarProperty Name="Q9" ColumnName="Q9" />
+                <ScalarProperty Name="Q8" ColumnName="Q8" />
+                <ScalarProperty Name="Q7" ColumnName="Q7" />
+                <ScalarProperty Name="Q6" ColumnName="Q6" />
+                <ScalarProperty Name="Q5" ColumnName="Q5" />
+                <ScalarProperty Name="Q4" ColumnName="Q4" />
+                <ScalarProperty Name="Q3" ColumnName="Q3" />
+                <ScalarProperty Name="Q2" ColumnName="Q2" />
+                <ScalarProperty Name="Q1" ColumnName="Q1" />
+                <ScalarProperty Name="lectureid" ColumnName="lectureid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lecture1">
+            <EntityTypeMapping TypeName="DB_A0B2A3_conferenceModel.lecture1">
+              <MappingFragment StoreEntitySet="lectures">
+                <ScalarProperty Name="ecu" ColumnName="ecu" />
+                <ScalarProperty Name="room" ColumnName="room" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

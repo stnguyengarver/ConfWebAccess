@@ -184,6 +184,7 @@ namespace ConfWebAccess.Controllers
                     newuser.LastName = model.LastName;
                     newuser.Title = model.Title;
                     newuser.PhoneNumber = model.PhoneNumber;
+                    newuser.Company = model.Company;
                     newuser.Active = true;
 
 

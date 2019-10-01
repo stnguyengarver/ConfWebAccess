@@ -37,5 +37,7 @@ namespace ConfWebAccess.Models
         public virtual DbSet<confabstract> confabstracts { get; set; }
         public virtual DbSet<SysSetting> SysSettings { get; set; }
         public virtual DbSet<SysFilePath> SysFilePaths { get; set; }
+        public virtual DbSet<survey> surveys { get; set; }
+        public virtual DbSet<lecture1> lecture1 { get; set; }
     }
 }
