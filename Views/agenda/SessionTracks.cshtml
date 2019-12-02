@@ -1,8 +1,32 @@
-﻿
-@{
-    ViewBag.Title = "SessionTracks";
+﻿@{
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SessionTracks</h2>
 
+
+    <div>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">Day 01</a></li>
+            <li role="presentation">                <a href="#second" aria-controls="second" role="tab" data-toggle="tab">Day 02</a></li>
+            <li role="presentation">                <a href="#third" aria-controls="third" role="tab" data-toggle="tab">Day 03</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="first">
+                <iframe src="~/media/schedule1.pdf" frameborder="0" style="position:absolute;top:50;left:0;width:100%;height:100%"   ></iframe>
+            </div>
+            <div role="tabpanel" class="tab-pane " id="second">
+                <iframe src="~/media/schedule2.pdf"  frameborder="0" style="position:absolute;top:50;left:0;width:100%;height:100%"  ></iframe>
+            </div>
+
+            <div role="tabpanel" class="tab-pane " id="third">
+                <iframe src="~/media/schedule3.pdf"  frameborder="0" style="position:absolute;top:50;left:0;width:100%;height:100%"  ></iframe>
+            </div>
+
+        </div>
+
+    </div>

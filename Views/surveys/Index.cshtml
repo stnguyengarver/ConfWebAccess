@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ConfWebAccess.Models.survey>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Q1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q6)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q7)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q8)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Q9)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lecture.code)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q6)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q7)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q8)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Q9)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecture.code)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

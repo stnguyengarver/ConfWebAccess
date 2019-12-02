@@ -24,7 +24,7 @@ namespace ConfWebAccess.Controllers
                     studentclass sl = new studentclass();
                     sl.classid = id;
                     sl.studentid = userid;
-                   // sl.scandate = DateTime.Now;
+                   sl.scandate = DateTime.Now;
                     db.studentclasses.Add(sl);
                     db.SaveChanges();
                 }

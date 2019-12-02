@@ -1,4 +1,5 @@
-﻿@model ConfWebAccess.Models.confabstract
+﻿@using ConfWebAccess.Models
+@model ConfWebAccess.Models.confabstract
 
 @{
     ViewBag.Title = "Edit";
@@ -192,9 +193,70 @@
 {
 
 
-    @Html.ActionLink("Upload Presentations", "Index", "Import", new { id = Model.id }, null)
+    <h2>Presentation Upload</h2>
 
 
+    using (Html.BeginForm("SaveImport", "Import", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.Hidden("id", Model.id)
+            <div class="form-group">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <label class="control-label input-group-addon">File to Upload</label>
+                        <input class="form-control" type="file" id="importfile" name="upload" />
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-1">
+                    <div class="input-group">
+
+                        <span class="input-group-btn"><input class="btn btn-primary" type="submit" name="action" id="action" value="Upload File" /></span>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                File Name
+            </th>
+
+            <th>
+                Upload Date
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in (IEnumerable<SysFilePath>)ViewBag.Presentations)
+        {
+            <tr>
+                <td>
+                    <a href="@Href("~/Temp/" + item.FileName)">@(item.FileName) </a>
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UploadDate)
+                </td>
+                <td></td>
+            </tr>
+        }
+
+    </table>
 
 }
 

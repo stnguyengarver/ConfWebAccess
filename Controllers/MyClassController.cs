@@ -15,8 +15,18 @@ namespace ConfWebAccess.Controllers
 
         // GET: lectures
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
+            if(id != null)
+            {
+                IEnumerable<studentclass> result = (from cls in db.lectures
+                                                    join stdcls in db.studentclasses on cls.id equals stdcls.classid
+                                                    where stdcls.studentid == id
+                                                    select stdcls).ToList();
+
+                return View(result);
+            }
+
             if(CurrentUser != null)
             {
                 IEnumerable<studentclass> result = (from cls in db.lectures

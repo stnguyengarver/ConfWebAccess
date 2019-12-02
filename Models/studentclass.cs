@@ -19,8 +19,7 @@ namespace ConfWebAccess.Models
         public int classid { get; set; }
         public Nullable<System.DateTime> scandate { get; set; }
     
-        public virtual lecture lecture { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual lecture1 lecture1 { get; set; }
+        public virtual lecture lecture { get; set; }
     }
 }

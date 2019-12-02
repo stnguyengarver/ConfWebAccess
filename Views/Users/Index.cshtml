@@ -179,7 +179,9 @@
 
 
 
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Badge", "Print", "Badge", new { id = item.Id }, null) |
+            @Html.ActionLink("Class Attended", "Index", "Myclass", new { id = item.Id }, null)
 
         </td>
 

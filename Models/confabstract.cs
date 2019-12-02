@@ -33,8 +33,8 @@ namespace ConfWebAccess.Models
         public string status { get; set; }
         public bool submitted { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<presenter> presenters { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

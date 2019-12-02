@@ -45,6 +45,8 @@ namespace ConfWebAccess.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Presentations = db.SysFilePaths.Where(x => x.FileType == "Presentation").Where(x => x.LinkId == (int)id);
             return View(confabstract);
         }
 

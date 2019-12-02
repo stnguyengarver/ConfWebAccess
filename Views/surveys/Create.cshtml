@@ -1,0 +1,168 @@
+﻿@model ConfWebAccess.Models.survey
+
+@{
+                /**/
+
+                ViewBag.Title = "Create";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>The American Public Works Association - Texas Chapter </h2>
+<h2>2020 Annual Conference</h2>
+<br />
+
+<h2>Education Session Evaluation</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.userid)
+    @Html.HiddenFor(model => model.lectureid)
+
+<table border="2">
+
+    <tr bgcolor="#000000">
+        <td width="400">
+            <font color="white">Session Content:</font>
+        </td>
+        <td width="100">
+            <font color="white">Poor</font>
+        </td>
+        <td width="100">
+            <font color="white">Fair</font>
+        </td>
+        <td width="100">
+            <font color="white">Good</font>
+        </td>
+        <td width="100">
+            <font color="white">Very Good</font>
+        </td>
+        <td width="100">
+            <font color="white">Great</font>
+        </td>
+    </tr>
+    <tr>
+        <td width="400">
+            Program Content
+        </td>
+        <td width="100">
+            <b>1</b> @Html.RadioButtonFor(model => model.Q1, "1")
+        </td>
+        <td width="100">
+            <b>2</b>  @Html.RadioButtonFor(model => model.Q1, "2")
+        </td>
+        <td width="100">
+            <b>3</b>  @Html.RadioButtonFor(model => model.Q1, "3")
+        </td>
+        <td width="100">
+            <b>4</b>  @Html.RadioButtonFor(model => model.Q1, "4")
+        </td>
+        <td width="100">
+            <b>5</b> @Html.RadioButtonFor(model => model.Q1, "5")
+        </td>
+    </tr>
+
+
+    <tr>
+        <td width="300">
+            Revelance of Topic
+        </td>
+        <td width="50">
+            <b>1</b> @Html.RadioButtonFor(model => model.Q2, "1")
+        </td>
+        <td width="50">
+            <b>2</b>  @Html.RadioButtonFor(model => model.Q2, "2")
+        </td>
+        <td width="50">
+            <b>3</b>  @Html.RadioButtonFor(model => model.Q2, "3")
+        </td>
+        <td width="50">
+            <b>4</b>  @Html.RadioButtonFor(model => model.Q2, "4")
+        </td>
+        <td width="50">
+            <b>5</b> @Html.RadioButtonFor(model => model.Q2, "5")
+        </td>
+    </tr>
+
+
+    <tr>
+        <td width="300">
+            Overall Session Rating
+        </td>
+        <td width="50">
+            <b>1</b> @Html.RadioButtonFor(model => model.Q3, "1")
+        </td>
+        <td width="50">
+            <b>2</b>  @Html.RadioButtonFor(model => model.Q3, "2")
+        </td>
+        <td width="50">
+            <b>3</b>  @Html.RadioButtonFor(model => model.Q3, "3")
+        </td>
+        <td width="50">
+            <b>4</b>  @Html.RadioButtonFor(model => model.Q3, "4")
+        </td>
+        <td width="50">
+            <b>5</b> @Html.RadioButtonFor(model => model.Q3, "5")
+        </td>
+    </tr>
+
+
+    <tr bgcolor="#000000">
+        <td width="300">
+            <font color="white">After attending this session, I am now better able to:</font>
+        </td>
+        <td width="50">
+            <font color="white">Strongly Disagree</font>
+        </td>
+        <td width="50">
+            <font color="white">Disagree</font>
+        </td>
+        <td width="50">
+            <font color="white">Neutral</font>
+        </td>
+        <td width="50">
+            <font color="white">Agree</font>
+        </td>
+        <td width="50">
+            <font color="white">Strongly Agree</font>
+        </td>
+    </tr>
+
+
+    <tr>
+        <td width="300">
+            Recognize the importance and correlation of pavement 
+        </td>
+        <td width="50">
+            <b>1</b> @Html.RadioButtonFor(model => model.Q4, "1")
+        </td>
+        <td width="50">
+            <b>2</b>  @Html.RadioButtonFor(model => model.Q4, "2")
+        </td>
+        <td width="50">
+            <b>3</b>  @Html.RadioButtonFor(model => model.Q4, "3")
+        </td>
+        <td width="50">
+            <b>4</b>  @Html.RadioButtonFor(model => model.Q4, "4")
+        </td>
+        <td width="50">
+            <b>5</b> @Html.RadioButtonFor(model => model.Q4, "5")
+        </td>
+    </tr>
+</table>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

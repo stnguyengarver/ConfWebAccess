@@ -22,12 +22,12 @@ namespace ConfWebAccess.Models
         }
     
         public int id { get; set; }
+        public string code { get; set; }
         public string description { get; set; }
         public string starttime { get; set; }
         public string duration { get; set; }
         public string room { get; set; }
         public Nullable<decimal> ecu { get; set; }
-        public string code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<studentclass> studentclasses { get; set; }

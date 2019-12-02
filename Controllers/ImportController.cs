@@ -53,7 +53,7 @@ namespace ConfWebAccess.Controllers
 
                     db.SysFilePaths.Add(newupload);
                     db.SaveChanges();
-                    return View("Success");
+                RedirectToAction("Details", "confabstracts", new { id = id });
                
 
                

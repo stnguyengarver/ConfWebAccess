@@ -1,0 +1,107 @@
+﻿@model ConfWebAccess.Models.survey
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>survey</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Q1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q5)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q6)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q6)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q7)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q7)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q8)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q8)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Q9)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Q9)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lecture.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lecture.code)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

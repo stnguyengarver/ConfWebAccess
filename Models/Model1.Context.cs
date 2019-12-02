@@ -28,16 +28,15 @@ namespace ConfWebAccess.Models
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<lecture> lectures { get; set; }
-        public virtual DbSet<studentclass> studentclasses { get; set; }
         public virtual DbSet<SysUserType> SysUserTypes { get; set; }
         public virtual DbSet<categorylist> categorylists { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<presenter> presenters { get; set; }
         public virtual DbSet<confabstract> confabstracts { get; set; }
         public virtual DbSet<SysSetting> SysSettings { get; set; }
         public virtual DbSet<SysFilePath> SysFilePaths { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<lecture> lectures { get; set; }
+        public virtual DbSet<studentclass> studentclasses { get; set; }
         public virtual DbSet<survey> surveys { get; set; }
-        public virtual DbSet<lecture1> lecture1 { get; set; }
     }
 }
